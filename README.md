@@ -38,7 +38,7 @@ Start the server with: th -ldisplay.start
 Open this URL in your browser: http://localhost:8000
 
 ## Download pre-trained models and images:
-Download and extract to the repective directories.
+You may download the models and our images (from [AVA dataset](http://vislab.berkeleyvision.org/datasets.html)) and extract to the repective directories from 
 [Google_Drive](https://drive.google.com/open?id=13ay08vLY2OezNbDxj-nSMRGcMy2qW8z6)
 or
 [Baidu Pan](pan.baidu.com)
