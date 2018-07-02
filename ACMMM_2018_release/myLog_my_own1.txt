@@ -1,0 +1,118 @@
+{
+  ntrain : inf
+  beta1 : 0.5
+  name : "fullconv_KNN_2"
+  niter : 500
+  batchSize : 8
+  ndf : 64
+  fineSize : 224
+  nz : 100
+  loadSize : 256
+  gpu : 1
+  ngf : 64
+  no_cuda : false
+  inputChannel : 3
+  dataset : "folder"
+  inputSize : 224
+  lr : 5e-05
+  locnet : ""
+  noise : "normal"
+  sca : true
+  tra : true
+  rot : false
+  nThreads : 4
+  display_id : 10
+  display : 1
+}
+Random Seed: 4637	
+Starting donkey with id: 4 seed: 4641
+table: 0x40348ec0
+Starting donkey with id: 1 seed: 4638
+table: 0x41643b40
+Starting donkey with id: 2 seed: 4639
+table: 0x4168b068
+Starting donkey with id: 3 seed: 4640
+table: 0x4091e4a0
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Starting donkey with id: 2 seed: 9678
+table: 0x4050f7a0
+Starting donkey with id: 4 seed: 9399
+table: 0x41e2fe10
+Starting donkey with id: 1 seed: 5424
+table: 0x41404950
+Starting donkey with id: 3 seed: 8649
+table: 0x40b3ca78
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Loading train metadata from cache
+Loading KNN matrix for FAKE data in trainLoader2
+Dataset1: folder	 Size: 	19009	
+Dataset2: folder	 Size: 	19009	
+Using pretrained ResNet-101 as the loc-net	
+clone copy created	
+size of lr_multiplierG is 	
+ 42577624
+[torch.LongStorage of size 1]
+
+NetG created successfully	
+netD created successfully	
+THCudaCheck FAIL file=/home/danny/torch/extra/cutorch/lib/THC/generic/THCStorage.cu line=66 error=2 : out of memory
+/home/danny/torch/install/bin/luajit: /home/danny/torch/install/share/lua/5.1/nn/Container.lua:67: 
+In 2 module of nn.Sequential:
+In 3 module of nn.Sequential:
+/home/danny/torch/install/share/lua/5.1/nn/THNN.lua:110: cuda runtime error (2) : out of memory at /home/danny/torch/extra/cutorch/lib/THC/generic/THCStorage.cu:66
+stack traceback:
+	[C]: in function 'v'
+	/home/danny/torch/install/share/lua/5.1/nn/THNN.lua:110: in function 'SpatialConvolutionMM_updateOutput'
+	...ny/torch/install/share/lua/5.1/nn/SpatialConvolution.lua:79: in function <...ny/torch/install/share/lua/5.1/nn/SpatialConvolution.lua:76>
+	[C]: in function 'xpcall'
+	/home/danny/torch/install/share/lua/5.1/nn/Container.lua:63: in function 'rethrowErrors'
+	/home/danny/torch/install/share/lua/5.1/nn/Sequential.lua:44: in function </home/danny/torch/install/share/lua/5.1/nn/Sequential.lua:41>
+	[C]: in function 'xpcall'
+	/home/danny/torch/install/share/lua/5.1/nn/Container.lua:63: in function 'rethrowErrors'
+	/home/danny/torch/install/share/lua/5.1/nn/Sequential.lua:44: in function 'forward'
+	main.lua:576: in function 'opfunc'
+	/home/danny/torch/install/share/lua/5.1/optim/rmsprop.lua:35: in function 'rmsprop'
+	main.lua:695: in main chunk
+	[C]: in function 'dofile'
+	...anny/torch/install/lib/luarocks/rocks/trepl/scm-1/bin/th:150: in main chunk
+	[C]: at 0x00405d50
+
+WARNING: If you see a stack trace below, it doesn't point to the place where this error occurred. Please use only the one above.
+stack traceback:
+	[C]: in function 'error'
+	/home/danny/torch/install/share/lua/5.1/nn/Container.lua:67: in function 'rethrowErrors'
+	/home/danny/torch/install/share/lua/5.1/nn/Sequential.lua:44: in function 'forward'
+	main.lua:576: in function 'opfunc'
+	/home/danny/torch/install/share/lua/5.1/optim/rmsprop.lua:35: in function 'rmsprop'
+	main.lua:695: in main chunk
+	[C]: in function 'dofile'
+	...anny/torch/install/lib/luarocks/rocks/trepl/scm-1/bin/th:150: in main chunk
+	[C]: at 0x00405d50
