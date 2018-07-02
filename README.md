@@ -37,6 +37,10 @@ Optionally, for displaying images during training and generation, we will use th
 Start the server with: th -ldisplay.start
 Open this URL in your browser: http://localhost:8000
 
+## Download pre-trained models and images:
+[Google_Drive](https://drive.google.com/open?id=13ay08vLY2OezNbDxj-nSMRGcMy2qW8z6)
+[Baidu Pan](pan.baidu.com)
+
 
 ## To run enhancement for an input image:
 ```
