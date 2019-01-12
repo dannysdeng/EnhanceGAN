@@ -48,6 +48,8 @@ or
 ```
    cd ./ACMMM_2018_release;
    ./run_single_image.sh
+   
+   (For CPU mode, use "--gpu 0"  in ./run_single_image.sh)
 ```
 ## To run training (~11 GB of GPU memory required):
 ```
