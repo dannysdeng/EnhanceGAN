@@ -10,11 +10,13 @@ function TopK:__init(k, dimension, dir, sort)
 end
 
 function TopK:_lazyInit()
-  self._indices = self._indices or torch.CudaLongTensor()
+  self._indices = self._indices or torch.LongTensor()
   -- (torch.type(self.output) == 'torch.CudaTensor' and torch.CudaLongTensor() or torch.LongTensor())
   if torch.type(self._indices) == 'torch.CudaTensor' then
       self._indices = self._indices:cudaLong()
-  end
+  else
+      self._indices = self._indices:long()
+  end  
 end
 
 function TopK:updateOutput(inputTable)
@@ -27,11 +29,20 @@ function TopK:updateOutput(inputTable)
     local k = self.k
 
     
-    self.output2 = self.output2 or (torch.type(input) == 'torch.CudaTensor' and torch.CudaTensor() or torch.Tensor())
+    self.output2 = self.output2 or (torch.type(input) == 'torch.FloatTensor' and torch.FloatTensor() or torch.Tensor())
+
+    if torch.type(input) == 'torch.CudaTensor' then
+       self.output2 = self.output2:cuda()
+    end
+
     torch.topk(self.output2, self._indices, probMap, k, dimension, self.dir, self.sort)
 
 
-    self.output1 = self.output1 or (torch.type(input) == 'torch.CudaTensor' and torch.CudaTensor() or torch.Tensor())
+    self.output1 = self.output1 or (torch.type(input) == 'torch.FloatTensor' and torch.FloatTensor() or torch.Tensor())
+    if torch.type(input) == 'torch.CudaTensor' then
+       self.output1 = self.output1:cuda()
+    end
+
     self.output1:resize(input:size(1), input:size(2), k)-- 2x4x3
     for i = 1,input:size(1) do 
       self.output1:narrow(1,i,1):copy(   input:narrow(1,i, 1):index(3,self._indices:narrow(1,i,1):squeeze():long())         )
@@ -53,9 +64,13 @@ function TopK:updateGradInput(inputTable, gradOutputTable)
 
   local dimension = self.dimension
 
-  self.gradInput1 = self.gradInput1 or (torch.type(grad1) == 'torch.CudaTensor' and torch.CudaTensor() or torch.Tensor())
-  self.gradInput2 = self.gradInput2 or (torch.type(grad2) == 'torch.CudaTensor' and torch.CudaTensor() or torch.Tensor())
+  self.gradInput1 = self.gradInput1 or (torch.type(grad1) == 'torch.FloatTensor' and torch.FloatTensor() or torch.Tensor())
+  self.gradInput2 = self.gradInput2 or (torch.type(grad2) == 'torch.FloatTensor' and torch.FloatTensor() or torch.Tensor())
 
+  if torch.type(self.grad1) == 'torch.CudaTensor' then
+     self.gradInput1 = self.gradInput1:cuda()
+     self.gradInput2 = self.gradInput2:cuda()
+  end
 
   self.gradInput2:resizeAs(probMap):zero():scatter(dimension, self._indices, grad2) -- [probMap, easy]
 

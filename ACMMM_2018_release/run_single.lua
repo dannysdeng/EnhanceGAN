@@ -1,15 +1,10 @@
 require 'torch'
 require 'nn'
 require 'optim'
-require 'cudnn'
 require 'image';
 require 'tds'
---require 'lmdb'
---require 'ffi'
 require 'nngraph'
 require 'dpnn'
-require 'cunn'
-
 require 'stn'
 require 'dsBound'
 require 'labFilter'
@@ -22,9 +17,17 @@ require 'contrastFilter'
 cmd = torch.CmdLine()
 cmd:text()
 cmd:option('--filename', '', 'filename of user uploaded image')
+cmd:option('--gpu', 1, 'Use GPU: 1 | Use CPU: 0')
+
 cmd:text()
 local opt = cmd:parse(arg or {})
 
+
+if opt.gpu == 1 then
+  print('Using GPU mode. This requires CUDNN 5 and CUNN')
+  require 'cunn'
+  require 'cudnn'
+end
 
 
 
@@ -109,12 +112,17 @@ function file_exists(name)
 end
 
 
-  I = torch.CudaTensor(1,3,224,224)
+  I = torch.FloatTensor(1,3,224,224) --I = torch.CudaTensor(1,3,224,224)
   netG = torch.load('./checkpoints/model_best.t7')
-  -- print('Shithead, set num input dims 2 in nn.View(49)')
-  -- netG:get(1):get(22):setNumInputDims(2)
   netG:evaluate()
-  netG:cuda()
+  netG:float()
+
+  if opt.gpu == 1 then
+    netG:cuda()
+    I = I:cuda()
+  end
+
+
   os.execute("mkdir demo_result")
   new_results = ("demo_result")
   -- for i = 1, total_img do
