@@ -49,7 +49,8 @@ or
    cd ./ACMMM_2018_release;
    ./run_single_image.sh
    
-   (For CPU mode, use "--gpu 0"  in ./run_single_image.sh)
+   (For CPU mode, use "--gpu 0"  in ./run_single_image.sh. 
+    Note that you might need to download "model_best_cpu.t7" and put it in the "./ACMMM_2018_release/checkpoints/" folder.)
 ```
 ## To run training (~11 GB of GPU memory required):
 ```
