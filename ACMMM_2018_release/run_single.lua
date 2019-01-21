@@ -113,7 +113,13 @@ end
 
 
   I = torch.FloatTensor(1,3,224,224) --I = torch.CudaTensor(1,3,224,224)
-  netG = torch.load('./checkpoints/model_best.t7')
+  if opt.gpu == 1 then
+    print('Loading pretrained model in GPU mode') 
+    netG = torch.load('./checkpoints/model_best.t7')
+  else
+    print('Loading pretrained model in CPU mode')
+    netG = torch.load('./checkpoints/model_best_cpu.t7')
+  end
   netG:evaluate()
   netG:float()
 
