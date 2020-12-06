@@ -26,7 +26,7 @@ git clone https://github.com/qassemoquab/stnbhwd.git; cd stnbhwd && luarocks mak
 ```
    luarocks install cudnn; # (The current version requires cudnn 5.0)
    luarocks install tds;
-   luarocks intsall nngraph;
+   luarocks install nngraph;
    luarocks install dpnn;
    luarocks install matio; # (Make sure that the shared libraries (libmatio.so or libmatio.dylib) are in your library path, e.g., sudo apt-get install libmatio2)
    luarocks install https://raw.githubusercontent.com/szym/display/master/display-scm-0.rockspec
